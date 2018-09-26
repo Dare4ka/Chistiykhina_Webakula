@@ -427,19 +427,21 @@ $f-size: 14px
 		padding-top: 80px
 		min-width: 660px
 
-	&__title
+	h1
 		font-size: 50px
 		line-height: 60px
 		font-family: ($f-black)
 		text-transform: uppercase
 		padding: 20px 0 35px
 
-	&__text-wrap
-		padding: 0 90px 0 190px
+	p
+		padding: 10px 100px 10px 200px
+		font-size: ($f-size + 1)
+		line-height: 25px
 		border-right: 3px solid rgba(210, 210, 210, .3)
 		position: relative
 
-		&::after
+		&:first-of-type::before
 			display: block
 			position: absolute
 			content: ""
@@ -448,12 +450,6 @@ $f-size: 14px
 			top: 0
 			right: -3px
 			background-color: ($c-active)
-
-
-	&__text
-		padding: 10px 0
-		font-size: ($f-size + 1)
-		line-height: 25px
 
 .catalog
 	position: relative
@@ -870,13 +866,13 @@ $f-size: 14px
 			padding-top: 20px
 			min-width: 300px
 
-		&__title
+		h1
 			font-size: 20px
 			line-height: 30px
 
-		&__text-wrap
-			padding: 0
-			padding-left: 15px
+		p
+			padding: 10px
+			padding-left: 25px
 
 	.catalog
 
@@ -955,6 +951,25 @@ $f-size: 14px
 			display: block
 			text-align: center
 			padding-top: 20px
+
+	.product
+
+		&_discount
+
+			.product__discount
+				min-width: 50px
+				min-height: 50px
+				font-size: ($f-size + 2)
+
+		&__name
+			font-size: ($f-size + 2)
+			line-height: ($f-size + 4)
+
+		&__cost-many
+			font-size: 30px
+
+		&__cost-one
+			font-size: 20px
 
 
 
