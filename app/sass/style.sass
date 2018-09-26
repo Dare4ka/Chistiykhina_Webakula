@@ -1,0 +1,962 @@
+*
+	padding: 0
+	margin: 0
+	box-sizing: border-box
+
+@font-face
+	font-family: "HothamPro"
+	src: url("../fonts/10178.otf")
+
+@font-face
+	font-family: "HothamPro-Bold"
+	src: url("../fonts/9781.otf")
+
+@font-face
+	font-family: "HothamPro-Black"
+	src: url("../fonts/10829.otf")
+
+$c-text: #171717
+$c-active: #ebb03d
+$c-footer: rgba(255, 255, 255, .5)
+$f-bold: "HothamPro-Bold", sans-serif
+$f-black: "HothamPro-Black", sans-serif
+$f-f: "HothamPro", sans-serif
+$f-size: 14px
+
+.page
+	width: 100%
+	min-height: 100vh
+	font-size: ($f-size)
+	font-family: ($f-f)
+
+%container
+	max-width: 1360px
+	padding: 0 30px
+	margin: auto
+	display: flex
+
+.head
+	width: 100%
+	min-height: 90px
+	background-color: #fff
+	position: fixed
+	z-index: 100
+
+	&__container 
+		@extend %container
+		align-items: center
+		justify-content: space-between
+		min-height: 90px
+
+	&_static
+		position: static !important
+
+	&__phone
+		display: none
+
+.dropdown
+	position: absolute
+	left: 25px
+	top: 95px
+	columns: 2 200px
+	column-gap: 20px
+	width: 440px
+	display: none
+
+	&_open
+		display: block
+
+	&__bg
+		width: 100vw
+		position: absolute
+		background-color: #fff
+		left: 0
+		top: 100px
+		height: 210px
+		z-index: -1
+		display: none
+
+		&_open
+			display: block
+
+	&__item
+		list-style: none
+
+	&__link
+		color: ($c-text)
+		font-family: ($f-f)
+		font-size: ($f-size)
+		line-height: 30px
+		text-decoration: none
+
+		&:hover
+			color: ($c-active)
+
+.navigation
+	padding: 0 25px
+	font-family: ($f-bold)
+
+	&__list
+		display: flex
+
+	&__item
+		list-style: none
+		position: relative
+
+	&__link
+		display: block
+		padding: 10px 25px
+		position: relative
+		text-decoration: none
+		color: ($c-text)
+
+		&:only-child
+			path
+				display: none
+
+.select
+	position: relative
+
+	&__item
+		display: none
+		list-style: none
+		background-color: #fff
+		width: 100%
+
+		&:first-of-type
+			display: block
+
+		&:not(:first-of-type)
+			position: absolute
+			left: 0
+			top: 100%
+
+		&:last-of-type
+			top: 200%
+
+	&__link
+		display: block
+		text-decoration: none
+		color: ($c-text)
+		font-family: ($f-bold)
+		text-transform: uppercase
+		padding: 10px 20px
+
+	&:hover
+		.select__item
+			display: block
+
+.arow
+	position: absolute
+
+	&_product
+		top: 15px
+		right: 35px
+
+	&_nav
+		top: 9px
+		right: 10px
+
+		path
+			fill: ($c-active)
+
+	&_select
+		top: 9px
+		right: 0
+
+	&__svg
+
+		&_title
+			transform: rotate(-90deg)
+
+		&_catalog
+			transform: rotate(-90deg)
+
+	&_title
+		top: 23px
+		right: 45px
+
+	&_catalog
+		top: -1px
+		right: 0
+
+.icon
+	cursor: pointer
+	padding: 5px
+
+	&__img
+		fill: ($c-text)
+
+.basket
+	position: relative
+
+	&__amount
+		position: absolute
+		min-width: 20px
+		height: 20px
+		line-height: 20px
+		text-align: center
+		border-radius: 50%
+		background-color: ($c-active)
+		font-family: ($f-bold)
+		left: -10px
+		bottom: -5px
+
+.burger
+	width: 23px
+	height: 20px
+	position: relative
+	cursor: pointer
+
+	&__global
+		width: 100%
+		height: 3px
+		position: absolute
+		left: 0
+		background-color: ($c-text)
+		transition: transform .2s
+
+		&_top
+			top: 0
+
+		&_middle
+			top: calc(50% - 1.5px)
+		
+		&_bottom
+			bottom: 0
+
+	&_open
+		position: absolute
+		z-index: 101
+		top: 40px
+		right: 40px
+		.burger__global_top
+			transform: rotate(38deg) scaleX(1.2)
+			transform-origin: 0 50%
+
+		.burger__global_middle
+			transform: scaleX(0)
+			transform-origin: 50% 50%
+
+		.burger__global_bottom
+			transform: rotate(-38deg) scaleX(1.2)
+			transform-origin: 0 50%
+
+.burger-meny
+	position: absolute
+	z-index: 100
+	width: 100%
+	min-height: 100vh
+	top: 0
+	left: 0
+	background-color: ($c-active)
+	transform: translateX(100%)
+	transition: transform .3s
+
+	&__list
+		display: flex
+		flex-direction: column
+		align-items: center
+		justify-content: center
+		margin: auto
+		min-height: 100vh
+
+	&__item
+		list-style: none
+		padding: 10px
+
+	&__link
+		display: block
+		padding: 0 40px
+		font-size: 50px
+		font-family: ($f-bold)
+		color: ($c-text)
+		text-decoration: none
+		line-height: 80px
+
+		&:hover
+			color: #fff
+			background-color: ($c-text)
+
+	&_open
+		transform: translateX(0)
+
+.first
+	width: 100%
+	min-height: 100vh
+	padding-top: 90px
+	background: url("../image/first.jpg") no-repeat center top
+	background-size: cover
+	z-index: -1
+	position: relative
+
+	&__container
+		@extend %container
+		align-items: center
+		justify-content: flex-end
+		min-height: calc(100vh - 90px)
+		position: relative
+
+	&__scroll
+		font-family: ($f-black)
+		transform: rotate(-90deg)
+		transform-origin: 50% 0%
+		position: absolute
+		bottom: 120px
+		right: -10px
+		padding-left: 45px
+		z-index: 100
+		cursor: pointer
+
+		&::before
+			display: block
+			content: ""
+			position: absolute
+			width: 35px
+			height: 3px
+			background-color: ($c-text)
+			top: 8px
+			left: 0
+
+.title
+	width: 50%
+	min-width: 560px
+	padding-left: 70px
+
+	&__sale
+		font-size: 90px
+		line-height: 65px
+		text-transform: uppercase
+		font-family: ($f-black)
+		color: ($c-active)
+		width: 100%
+		border-right: 3px solid ($c-active)
+
+	&__text
+		font-size: 50px
+		line-height: 50px
+		font-family: ($f-black)
+		color: ($c-text)
+		padding: 20px 0
+		position: relative
+
+		&::before
+			display: block
+			content: ""
+			position: absolute
+			width: 38px
+			height: 3px
+			background-color: ($c-text)
+			left: -75px
+			top: 50px
+	&__btn
+		margin-top: 60px
+		display: flex
+
+.btn
+	display: block
+	color: ($c-text)
+	text-decoration: none
+	font-family: ($f-bold)
+	background-color: ($c-active)
+	position: relative
+
+	&_title
+		font-size: ($f-size + 2)
+		line-height: ($f-size + 2)
+		padding: 25px 60px 25px 50px
+		border-radius: 33px
+
+	&_product
+		font-size: ($f-size + 1)
+		line-height: ($f-size + 1)
+		padding: 20px 70px 20px 45px
+		border-radius: 30px
+
+	&_footer
+		display: block
+		padding: 16px 40px
+		border-radius: 22px
+		margin-right: 50px
+
+.main
+	position: relative
+
+	&::after
+		display: block
+		content: ""
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		background: url("../image/main-bg.png") no-repeat center
+		background-size: 100% 100%
+		z-index: -2
+
+.about
+	width: 100%
+	position: relative
+
+	&__img-block
+		width: calc(50% + 15px)
+		position: absolute
+		top: 0
+		left: 0
+		z-index: -1
+
+	&__img
+		width: 100%
+		height: auto
+		box-shadow: 10px -20px 50px rgba(0, 0, 0, .16)
+
+	&__bg
+		position: absolute
+		width: 60%
+		height: auto
+		top: calc(100% - 5px)
+		left: 0
+		z-index: -1
+	
+	&__container
+		@extend %container
+		justify-content: flex-end
+
+	&__wrap
+		width: calc(50% + 110px)
+		padding-top: 80px
+		min-width: 660px
+
+	&__title
+		font-size: 50px
+		line-height: 60px
+		font-family: ($f-black)
+		text-transform: uppercase
+		padding: 20px 0 35px
+
+	&__text-wrap
+		padding: 0 90px 0 190px
+		border-right: 3px solid rgba(210, 210, 210, .3)
+		position: relative
+
+		&::after
+			display: block
+			position: absolute
+			content: ""
+			width: 3px
+			height: 100px
+			top: 0
+			right: -3px
+			background-color: ($c-active)
+
+
+	&__text
+		padding: 10px 0
+		font-size: ($f-size + 1)
+		line-height: 25px
+
+.catalog
+	position: relative
+
+	&__container
+		@extend %container
+		padding-top: 120px
+		padding-bottom: 150px
+		flex-direction: column
+		align-items: center
+		position: relative
+
+	&__bg
+		position: absolute
+		right: 0
+		bottom: 0
+		width: 30%
+
+	&__link
+		display: block
+		color: ($c-text)
+		position: relative
+		padding-right: 20px
+		text-decoration: none
+
+
+.owl-carousel
+	padding: 60px 85px 70px
+
+	.owl-stage
+		min-height: 100%
+		display: flex
+		align-items: stretch
+
+	.owl-item
+		display: flex
+		align-items: stretch
+
+.owl-arow
+	width: calc(100% - 60px)
+	position: absolute
+	top: 300px
+	left: 30px
+	z-index: 10
+
+	button
+		width: 30px
+		height: 50px
+		position: absolute
+		top: 0
+		opacity: 0
+
+		&.owl-prev
+			left: 0
+		&.owl-next
+			right: 0
+
+
+.product
+	display: flex
+	align-items: stretch
+	justify-content: center
+
+	&__discount
+		display: none
+
+	&_discount
+
+		.product__discount
+			position: absolute
+			z-index: 2
+			min-width: 75px
+			min-height: 75px
+			border-radius: 50%
+			display: flex
+			align-items: center
+			justify-content: center
+			background-color: ($c-active)
+			top: 35px
+			left: 0
+			font-size: ($f-size + 9)
+			font-family: ($f-black)
+
+		.product__cost-many span
+			color: transparent
+
+		.product__cost-one_number
+			position: relative
+			&::before
+				position: absolute
+				display: block
+				background-color: ($c-active)
+				top: 50%
+				left: -5px
+				right: -5px
+				height: 3px
+				content: ""
+				transform: rotate(-8deg)
+
+		.product__img
+			width: 95% !important
+			height: auto
+			margin: 0 auto
+
+
+	&__img-block
+		position: relative
+
+	&__block
+		display: flex
+		flex-direction: column
+		align-items: center
+		justify-content: space-between
+		padding: 0 10px
+		text-decoration: none
+		color: ($c-text)
+
+	&__name-block
+		display: flex
+		flex-direction: column
+		align-items: center
+		text-align: center
+		padding-top: 40px
+
+	&__name
+		font-size: ($f-size + 9)
+		line-height: ($f-size + 14)
+		font-family: ($f-black)
+
+	&__cost-many
+		font-size: 40px
+		font-family: ($f-black)
+		padding: 20px 0 15px
+
+	&__cost-one
+		font-size: 30px
+		letter-spacing: -1px
+		padding-bottom: 30px
+
+
+	&__amount
+		font-size: ($f-size + 1)
+		font-family: ($f-f)
+		letter-spacing: normal
+
+	&__arow-wraper
+		width: calc(100% - 60px)
+		position: absolute
+		top: 300px
+		left: 30px
+		z-index: 9
+
+		.product__arow
+			position: absolute
+			top: 0
+			fill: none
+			stroke: ($c-active)
+			stroke-width: 3px
+
+			&_prev
+				left: 0
+			&_next
+				right: 0
+				transform: scaleX(-1)
+
+.btn_product:hover
+	background-color: ($c-text)
+	color: #fff
+
+	.arow__svg_product path
+		fill: #fff
+
+.logo_footer
+	padding-right: 10px
+
+.footer
+	background-color: ($c-text)
+
+	&__container
+		@extend %container
+		align-items: center
+		justify-content: space-between
+		min-height: 70px
+
+	&__top
+		border-bottom: 1px solid ($c-footer)
+		padding: 35px 0
+
+	&__contact
+		display: flex
+		align-items: center
+
+	&__phone
+		display: inline-block
+		color: #fff
+		padding: 10px 0
+		margin-right: 50px
+
+	&__sosial
+		display: block
+		margin-right: 10px
+		padding: 10px
+		border-radius: 50%
+		min-width: 45px
+		max-height: 45px
+		text-align: center
+
+		&:hover
+			background-color: #d0143f
+
+		img
+			opacity: .5			
+
+	&__help
+		width: 40px
+
+	&__bottom
+		min-height: 70px
+
+.creative
+	color: ($c-footer)
+
+.webakula
+	display: flex
+	align-items: center
+	color: ($c-footer)
+
+	img
+		opacity: .5
+		padding-left: 10px
+
+		&:hover
+			opacity: 1
+
+.nav-footer
+
+	&__item
+		display: inline-block
+		list-stule: none
+
+	&__link
+		display: block
+		padding: 10px 30px 30px 0
+		color: ($c-footer)
+		text-decoration: none
+		line-height: 20px
+
+@media screen and (max-width: 1200px)
+	
+	.navigation
+		padding: 0 5px
+
+		&__link
+			padding: 10px
+
+	.arow_nav
+		right: -5px
+
+	.select__link
+		padding: 10px
+
+	.nav-footer__link
+		padding-right: 10px
+
+@media screen and (max-width: 992px)
+
+	.navigation
+		display: none
+	
+	.head
+
+		.logo
+			margin-right: 45%
+
+	.burger-meny
+		display: none
+
+	.head_menu-open
+		background-color: ($c-active)
+		min-height: 100vh
+		position: absolute
+
+		.head__container
+			position: static
+			max-width: 100%
+			padding-top: 100px
+
+		.logo
+			display: none
+
+		.select
+			display: none
+
+		.icon
+			display: none
+
+		.dropdown__bg
+			display: none
+
+		.navigation
+			display: block
+			width: 100%
+			padding: 0 30px
+
+			&__list
+				flex-direction: column
+				align-items: center
+				justify-content: center
+
+			&__link
+				font-size: 25px
+
+		.dropdown
+			position: static
+			background-color: #fff
+
+			&__item
+				padding: 0  20px
+
+		.arow_nav path
+			fill: ($c-text)
+
+		.burger-meny
+			display: block
+			position: static
+			z-index: 0
+			transform: translateX(0)
+			padding-top: 20px
+			min-height: 100px
+
+			&__list
+				min-height: 100px
+
+			&__item
+				padding: 5px
+
+			&__link
+				padding: 0 10px
+				font-size: 18px
+				line-height: 30px
+
+@media screen and (max-width: 760px)
+
+	%container320
+		max-width: 320px
+		padding: 0 5px
+
+	.burger-meny
+		// display: none
+
+	.head
+		position: static
+
+		&__container
+			@extend %container320
+			position: relative
+
+		.logo
+			margin-right: 0
+			width: 70px
+
+			img
+				width: 100%
+
+	.select_ru
+		display: none
+
+	.burger
+		position: absolute
+		top: 35px
+		left: 100px
+
+	.icon_login
+		position: absolute
+		top: 27px
+		left: 130px
+
+	.select_uan
+		position: absolute
+		top: 27px
+		right: 60px
+
+	.first
+		padding-top: 0
+		&__container
+			@extend %container320
+
+	.title
+		min-width: 300px
+
+		&__sale
+			font-size: 50px
+			line-height: 30px
+
+		&__text
+			font-size: 30px
+			line-height: 30px
+
+		&__btn
+			margin-top: 20px
+
+	.btn_title
+		padding: 15px 30px 15px 15px
+
+	.arow_title
+		top: 14px
+		right: 15px
+
+	.about
+		&__container
+			@extend %container320
+
+		&__wrap
+			padding-top: 20px
+			min-width: 300px
+
+		&__title
+			font-size: 20px
+			line-height: 30px
+
+		&__text-wrap
+			padding: 0
+			padding-left: 15px
+
+	.catalog
+
+		&__container
+			@extend %container320
+			padding: 20px 0
+
+	.owl-carousel
+		padding: 20px 30px
+
+
+
+	.footer
+		&__container
+			@extend %container320
+			flex-direction: column
+
+		&__contact
+			flex-direction: column
+			align-items: flex-start
+
+	.nav-footer
+
+		&__item
+			display: block
+			padding: 0
+
+		&__link
+			padding: 10px
+
+	.head_menu-open
+
+		.logo
+			display: block
+			position: absolute
+			top: 30px
+			left: 10px
+
+		.select_ru
+			display: block
+			position: absolute
+			top: 27px
+			left: calc(50% - 30px)
+			width: 60px
+
+		.select__item
+			background-color: transparent
+
+		.navigation
+			background-color: ($c-text)
+
+			&__list
+				flex-direction: column
+				align-items: center
+				justify-content: center
+
+			&__link
+				font-size: 16px
+				color:($c-footer)
+
+		.dropdown
+			width: 250px
+
+		.arow_nav path
+			fill: ($c-active)
+
+		.burger-meny
+			&__link
+				font-size: 14px
+				line-height: 20px
+
+		.burger
+			left: calc(100% - 40px)
+
+		.head__phone
+			display: block
+			text-align: center
+			padding-top: 20px
+
+
+
+
+
