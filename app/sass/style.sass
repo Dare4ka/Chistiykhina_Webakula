@@ -287,7 +287,7 @@ $f-size: 14px
 	padding-top: 90px
 	background: url("../image/first.jpg") no-repeat center top
 	background-size: cover
-	z-index: -1
+	// z-index: -1
 	position: relative
 
 	&__container
@@ -305,8 +305,6 @@ $f-size: 14px
 		bottom: 120px
 		right: -10px
 		padding-left: 45px
-		z-index: 100
-		cursor: pointer
 
 		&::before
 			display: block
@@ -320,7 +318,7 @@ $f-size: 14px
 
 .title
 	width: 50%
-	min-width: 560px
+	// min-width: 560px
 	padding-left: 70px
 
 	&__sale
@@ -379,6 +377,13 @@ $f-size: 14px
 		border-radius: 22px
 		margin-right: 50px
 
+	&:hover
+		background-color: ($c-text)
+		color: #fff
+
+		path
+			fill: #fff
+
 .main
 	position: relative
 
@@ -427,6 +432,17 @@ $f-size: 14px
 		padding-top: 80px
 		min-width: 660px
 
+		&::before
+			position: absolute
+			display: block
+			content: ""
+			width: 25px
+			height: 170px
+			bottom: 0
+			right: 25px
+			background-color: #fff
+			z-index: 100
+
 	h1
 		font-size: 50px
 		line-height: 60px
@@ -434,21 +450,60 @@ $f-size: 14px
 		text-transform: uppercase
 		padding: 20px 0 35px
 
+.scroll
+	width: 100%
+	padding: 0 90px 0 190px
+	position: relative
+	height: 170px
+	overflow-y: scroll
+
+	&__wrap
+		width: calc(100% - 280px)
+		position: absolute
+		top: 0
+		left: 190px
+
 	p
-		padding: 10px 100px 10px 200px
+		padding: 10px
 		font-size: ($f-size + 1)
 		line-height: 25px
-		border-right: 3px solid rgba(210, 210, 210, .3)
 		position: relative
+		user-select: none
 
-		&:first-of-type::before
+	&__track
+		position: absolute
+		height: 170px
+		right: 50px
+		bottom: 0
+		width: 21px
+
+		&::before
 			display: block
 			position: absolute
 			content: ""
 			width: 3px
-			height: 100px
 			top: 0
-			right: -3px
+			right: 9px
+			bottom: 0
+			background-color: rgba(210, 210, 210, .3)
+
+	&__bar
+		position: absolute
+		top: 0
+		left: 0
+		width: 21px
+		height: 50px
+		z-index: 2
+		cursor: pointer
+
+		&::before
+			display: block
+			position: absolute
+			content: ""
+			width: 3px
+			top: 0
+			right: 9px
+			bottom: 0
 			background-color: ($c-active)
 
 .catalog
@@ -615,13 +670,6 @@ $f-size: 14px
 				right: 0
 				transform: scaleX(-1)
 
-.btn_product:hover
-	background-color: ($c-text)
-	color: #fff
-
-	.arow__svg_product path
-		fill: #fff
-
 .logo_footer
 	padding-right: 10px
 
@@ -647,9 +695,13 @@ $f-size: 14px
 		color: #fff
 		padding: 10px 0
 		margin-right: 50px
+		a
+			display: block
+			color: #fff
+			text-decoration: none
 
 	&__sosial
-		display: block
+		display: inline-block
 		margin-right: 10px
 		padding: 10px
 		border-radius: 50%
@@ -720,12 +772,35 @@ $f-size: 14px
 		display: none
 	
 	.head
+		min-height: 70px
+
+		&__container
+			min-height: 70px
 
 		.logo
 			margin-right: 45%
 
 	.burger-meny
 		display: none
+
+	.title
+		min-width: 50%
+
+		&__sale
+			font-size: 60px
+			line-height: 40px
+
+		&__text
+			font-size: 40px
+			line-height: 40px
+
+			&::before
+				width: 20px
+				left: -35px
+
+
+		&__btn
+			margin-top: 30px
 
 	.head_menu-open
 		background-color: ($c-active)
@@ -794,14 +869,11 @@ $f-size: 14px
 @media screen and (max-width: 760px)
 
 	%container320
-		max-width: 320px
-		padding: 0 5px
-
-	.burger-meny
-		// display: none
+		width: 100%
+		padding: 0 15px
 
 	.head
-		position: static
+		position: relative
 
 		&__container
 			@extend %container320
@@ -809,7 +881,7 @@ $f-size: 14px
 
 		.logo
 			margin-right: 0
-			width: 70px
+			width: 80px
 
 			img
 				width: 100%
@@ -819,18 +891,23 @@ $f-size: 14px
 
 	.burger
 		position: absolute
-		top: 35px
-		left: 100px
+		top: 25px
+		left: 28%
 
 	.icon_login
 		position: absolute
-		top: 27px
-		left: 130px
+		top: 17px
+		left: 42%
+
+	.icon_search
+		position: absolute
+		top: 17px
+		right: 35%
 
 	.select_uan
 		position: absolute
-		top: 27px
-		right: 60px
+		top: 17px
+		right: 20%
 
 	.first
 		padding-top: 0
@@ -866,13 +943,22 @@ $f-size: 14px
 			padding-top: 20px
 			min-width: 300px
 
+			&::before
+				right: 13px
+
 		h1
 			font-size: 20px
 			line-height: 30px
 
+	.scroll
+		padding: 0 30px 0 60px
+
+		&__wrap
+			width: calc(100% - 90px)
+			left: 60px
+
 		p
 			padding: 10px
-			padding-left: 25px
 
 	.catalog
 
@@ -883,8 +969,6 @@ $f-size: 14px
 	.owl-carousel
 		padding: 20px 30px
 
-
-
 	.footer
 		&__container
 			@extend %container320
@@ -892,13 +976,23 @@ $f-size: 14px
 
 		&__contact
 			flex-direction: column
-			align-items: flex-start
+			align-items: center
+
+		&__phone
+			margin: 0
+
+		&__bottom
+			padding: 10px 0
+
+	.btn_footer
+		margin: 0
 
 	.nav-footer
 
 		&__item
 			display: block
 			padding: 0
+			text-align: center
 
 		&__link
 			padding: 10px
@@ -918,6 +1012,10 @@ $f-size: 14px
 			left: calc(50% - 30px)
 			width: 60px
 
+			&:hover
+				a
+					background-color: #fff
+
 		.select__item
 			background-color: transparent
 
@@ -935,6 +1033,7 @@ $f-size: 14px
 
 		.dropdown
 			width: 250px
+			text-align: center
 
 		.arow_nav path
 			fill: ($c-active)
@@ -949,8 +1048,12 @@ $f-size: 14px
 
 		.head__phone
 			display: block
-			text-align: center
-			padding-top: 20px
+			padding: 20px 0 20px
+			a
+				display: block
+				color: ($c-text)
+				text-decoration: none
+				text-align: center
 
 	.product
 
@@ -971,7 +1074,25 @@ $f-size: 14px
 		&__cost-one
 			font-size: 20px
 
+@media screen and (max-width: 500px)
 
+	.product
+		margin: auto
 
+	.about__wrap
+		min-width: 270px
+
+	.scroll
+		padding-left: 30px
+
+		&__wrap
+			left: 30px
+			width: calc(100% - 60px)
+
+	.burger
+		left: 33%
+
+	.icon_login
+		left: 45%
 
 

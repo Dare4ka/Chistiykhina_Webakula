@@ -39,7 +39,7 @@ $(document).ready(function(){
 					0:{
 						items:1
 					},
-					760:{
+					500:{
 						items:2
 					},
 					992:{
@@ -89,4 +89,50 @@ $(document).ready(function(){
 		}
 	}
 })
+
+
+	// seo scroll
+
+	var textPercent = $('.scroll__wrap').height() / 100;
+	var trackPercent = $('.scroll__track').height() / 100;
+	var textVisible = $('.scroll__track').height() / textPercent;
+	var barHeight = textVisible * trackPercent;
+	var ismousedown;
+	$('.scroll__bar').height(barHeight + 'px');
+	
+
+	$('.scroll__bar').mousedown(function scrollDown() {
+		ismousedown = true;
+	});
+
+	$(this).mousemove(function scrollMove(e) {
+		if (ismousedown) {
+			var mouseY = e.pageY;
+			var barPosition = $('.scroll__bar').position().top;
+			var barOffset =  $('.scroll__bar').offset().top;
+			var mouseMove = mouseY - $('.scroll__track').offset().top;
+			
+			if (mouseMove >= 0 && mouseMove <= $('.scroll__track').height() - barHeight) {
+				$('.scroll__bar').css({
+					"top": mouseMove + "px"
+				});
+				var movePrecent = barPosition / trackPercent;
+				var moveText = movePrecent * textPercent;
+				$('.scroll__wrap').css({
+					"top": - moveText + "px"
+				});
+			}
+		}
+	})
+
+	$(this).mouseup(function(e){
+		ismousedown = false;
+	});
+
+	$('.scroll').scroll(function (e) {
+		$('.scroll__bar').css({
+			"top": - $('.scroll__wrap').position().top / textPercent * trackPercent + "px"
+		})
+	})
+
 })
